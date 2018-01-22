@@ -1,0 +1,24 @@
+{
+  "name": "dummy-node-timer",
+  "version": "1.0.0",
+  "description": "Dummy Node Timer",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antarasi/dummy-node-timer.git"
+  },
+  "engines": {
+    "node": "^8.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "author": "ANTARA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antarasi/dummy-node-timer/issues"
+  },
+  "homepage": "https://github.com/antarasi/dummy-node-timer#readme"
+}
