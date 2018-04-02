@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/antarasi/dummy-node-timer/issues"
   },
-  "homepage": "https://github.com/antarasi/dummy-node-timer#readme"
+  "homepage": "https://github.com/antarasi/dummy-node-timer#readme",
+  "dependencies": {
+    "moment": "^2.22.0"
+  }
 }
