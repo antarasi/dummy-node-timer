@@ -1,21 +1,33 @@
 let counter = 0;
 const moment = require('moment');
 const http = require('http');
+const https = require('https');
 const port = process.env.PORT || 8888;
+
+const cert = process.env.CERT;
+const key = process.env.CERT_KEY;
+
+const secure = (cert && key);
 
 const interval = setInterval(function () {
   counter++;
   console.log(moment.duration(counter, "seconds").humanize() + ` (${counter})`);
 }, 1000);
 
-http.createServer(function (req, res) {
+const handler = function (req, res) {
   const result = {
     counter,
     duration: moment.duration(counter, "seconds").humanize(),
     port,
   }
 
-  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.writeHead(200, {'Content-Type': 'application/json'});
   res.write(JSON.stringify(result));
   res.end();
-}).listen(port);
+};
+
+if (secure) {
+  https.createServer({cert, key}, handler).listen(port);
+} else {
+  http.createServer(handler).listen(port);
+}
