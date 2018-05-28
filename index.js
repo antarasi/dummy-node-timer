@@ -2,10 +2,11 @@ let counter = 0;
 const moment = require('moment');
 const http = require('http');
 const https = require('https');
+const fs = require('fs');
 const port = process.env.PORT || 8888;
 
-const cert = process.env.CERT;
-const key = process.env.CERT_KEY;
+const cert = process.env.CERT_PATH;
+const key = process.env.CERT_KEY_PATH;
 
 const secure = (cert && key);
 
@@ -27,7 +28,10 @@ const handler = function (req, res) {
 };
 
 if (secure) {
-  https.createServer({cert, key}, handler).listen(port);
+  https.createServer({
+    cert : fs.readFileSync(cert, 'utf8'),
+    key: fs.readFileSync(key, 'utf8'),
+  }, handler).listen(port);
 } else {
   http.createServer(handler).listen(port);
 }
